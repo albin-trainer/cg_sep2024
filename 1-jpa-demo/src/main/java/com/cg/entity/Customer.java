@@ -6,6 +6,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 @Entity//mandatory
 @Table(name="CUST_INFO")//optional
 public class Customer {
@@ -21,7 +22,15 @@ private String email;
 private Gender gender;
 @Embedded
 private Address address;
+@Transient
+private  String nameEmail;
 
+public String getNameEmail() {
+	return nameEmail;
+}
+public void setNameEmail(String nameEmail) {
+	this.nameEmail = nameEmail;
+}
 public Gender getGender() {
 	return gender;
 }

@@ -11,6 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 public class CustomerDAO {
 	static EntityManagerFactory emf=
@@ -18,7 +19,7 @@ public class CustomerDAO {
 public static void main(String[] args) {
 	System.out.println("TEST...");
 	//addNewCustomer();
-	searchCustomerById(102);
+	searchCustomerById2(102);
 	//updateEmail(102,"sanjay@cg.com");
 	//getAllCustomers();
 	//getCustomersBycity("Bengaluru");
@@ -46,6 +47,19 @@ private static void getAllCustomers() {
 	List<Customer> clist=q.getResultList();
 	Consumer<Customer>consumer=c->System.out.println(c.getCustName()+"\t"+c.getEmail());
 	clist.forEach(consumer);
+}
+
+private static void searchCustomerById2(int custId) {
+	EntityManager em=emf.createEntityManager();
+
+	Query q=em.createQuery("select c, concat(custName,email) as c.nameEmail from Customer c");
+	List<Object> list=q.getResultList();
+	for(Object r:list) {
+	Object[] row=(Object[])r;
+	
+		
+		System.out.println(row[0]);
+	}
 }
 private static void searchCustomerById(int custId) {
 	EntityManager em=emf.createEntityManager();
