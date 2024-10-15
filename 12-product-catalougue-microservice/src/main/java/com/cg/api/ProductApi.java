@@ -14,6 +14,8 @@ public class ProductApi {
 	private ProductService service;
 	@GetMapping("/products/{id}")
 	public ResponseEntity<Product> getProduct(@PathVariable int id){
+		// code to check for authentication ....
+		
 		Product product=service.allProducts().stream().
 				filter(p->p.getProductId()==id).findFirst().get();
 		return new ResponseEntity<Product>(product,HttpStatus.OK);
