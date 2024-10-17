@@ -32,10 +32,11 @@ public class AuthController {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         System.out.println(authenticate.isAuthenticated());
         if (authenticate.isAuthenticated()) {
-        	String token=
-        	service.generateToken(authRequest.getUsername());
         	UserCredential user=
-        	userRepo.findByUsername(authRequest.getUsername()).get();
+                	userRepo.findByUsername(authRequest.getUsername()).get();
+        	String token=
+        	service.generateToken(authRequest.getUsername(),user.getRole());
+        	
         	ResponseDto resDto=new ResponseDto();
         	resDto.setToken(token);
         	resDto.setRole(user.getRole());

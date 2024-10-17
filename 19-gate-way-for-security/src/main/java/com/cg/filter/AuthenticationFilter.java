@@ -39,6 +39,7 @@ public class AuthenticationFilter implements GlobalFilter{
                 try {
                     jwtUtil.validateToken(authHeader);
                     
+                    //passing the req to the next chain (Microservices)
                  request=  exchange.getRequest().mutate().
                 		 header("loggedInUser", jwtUtil.getUsernameFromToken(authHeader)).build();
 
