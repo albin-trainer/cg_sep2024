@@ -24,9 +24,9 @@ public class SecurityConfig {
         return http
             .authorizeExchange(exchanges -> exchanges
            //     .pathMatchers("/public/**").permitAll()   // Public routes, no auth required
-                    .pathMatchers("/identity-service/auth/login", "/identity-service/auth/register").permitAll() // Allow access without authentication
-                 .pathMatchers(HttpMethod.GET,"/order-service/order").hasRole("ROLE_user")
-                 .pathMatchers(HttpMethod.POST,"/order-service/order").hasRole("ROLE_admin")	
+                .pathMatchers("/identity-service/auth/login", "/identity-service/auth/register").permitAll() // Allow access without authentication
+                .pathMatchers(HttpMethod.GET,"/order-service/order").hasRole("ROLE_user")
+                .pathMatchers(HttpMethod.POST,"/order-service/order").hasRole("ROLE_admin")	
                 .pathMatchers("/order-service/loadbalance/**").hasRole("ROLE_admin") // ADMIN role only for /admin/**
                 .pathMatchers("/order-service/feign/**").hasRole("ROLE_user")   // USER role only for /user/**
                 .anyExchange().authenticated()              // All other routes require authentication

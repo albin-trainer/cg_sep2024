@@ -35,7 +35,8 @@ public class AuthController {
         	UserCredential user=
                 	userRepo.findByUsername(authRequest.getUsername()).get();
         	String token=
-        	service.generateToken(authRequest.getUsername(),user.getRole());
+        	//service.generateToken(authRequest.getUsername(),user.getRole());
+        			service.generateToken(user.getId()+"",user.getRole());
         	
         	ResponseDto resDto=new ResponseDto();
         	resDto.setToken(token);

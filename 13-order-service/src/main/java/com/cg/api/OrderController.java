@@ -16,12 +16,14 @@ import com.cg.proxy.ProductServiceProxy;
 @RestController
 public class OrderController {
 	@GetMapping("/order")
-	public String user(@RequestHeader ("loggedInUser") String uname) {
-		return "USER "+uname;
+	public String user(@RequestHeader ("loggedInUser") int id) {
+		//from uname u need find the id
+		// call service--> userRepo.findByUserName(uname);
+		return "USER "+id;
 	}
 	@PostMapping("/order")
-	public String admin(@RequestHeader ("loggedInUser") String uname) {
-		return "ADMIN "+uname;
+	public String admin(@RequestHeader ("loggedInUser")int id) {
+		return "ADMIN "+id;
 	}
 //	
 //	@GetMapping("/order")
